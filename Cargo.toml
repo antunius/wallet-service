@@ -1,0 +1,25 @@
+[package]
+name = "wallet-service"
+version = "0.1.0"
+edition = "2021"
+authors = ["Marcus Antunius"]
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[workspace]
+members = ["entity", "migration"]
+
+[dependencies]
+entity = { path = "entity" }
+migration = { path = "migration" } # depends on your needs
+
+tracing-subscriber = "0.3.19"
+actix-web = { version = "4.9.0", default-features = true }
+actix-cors = "0.7"
+serde = { version = "1.0.217", features = ["derive"] }
+log = { version = "0.4.22", features = [] }
+dotenv = "0.15.0"
+sea-orm = { version = "1.1.0", features = ["sqlx-postgres", "runtime-actix", "runtime-tokio", "macros", "chrono", "with-chrono"] }
+tracing = "0.1.41"
+csv = "1.1"
+uuid = { version = "1.11.0", features = ["v4"] }
+chrono = { version = "0.4.39", features = ["serde", "std"] }
