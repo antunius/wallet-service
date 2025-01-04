@@ -61,7 +61,9 @@ async fn update_order(
     payload: web::Json<PartialOrder>,
     db: web::Data<DatabaseConnection>,
 ) -> Result<HttpResponse, Error> {
-    match OrderService::update_order(db.get_ref(), order_id.into(), payload.into()).await {
+    match OrderService::update_order(db.get_ref(), order_id.into_inner(), payload.into_inner())
+        .await
+    {
         Ok(Some(updated_order)) => Ok(HttpResponse::Ok().json(<entity::order::Model as Into<
             OrderDto,
         >>::into(updated_order))),
