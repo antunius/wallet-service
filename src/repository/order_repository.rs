@@ -3,9 +3,8 @@ use crate::repository::crud::Crud;
 use entity::order;
 use entity::order::Model;
 use sea_orm::ActiveValue::Set;
-use sea_orm::{
-    prelude::*, DatabaseConnection, DeleteResult, IntoActiveModel,
-};
+use sea_orm::{prelude::*, DatabaseConnection, DeleteResult, IntoActiveModel};
+
 use std::option::Option;
 
 pub async fn insert_order(

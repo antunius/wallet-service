@@ -23,7 +23,12 @@ async fn create_order(
 #[get("/orders")]
 async fn get_orders(db: web::Data<DatabaseConnection>) -> Result<HttpResponse, Error> {
     match OrderService::fetch_all_orders(db.get_ref()).await {
-        Ok(orders) => Ok(HttpResponse::Ok().json(orders.into_iter().map(OrderDto::from).collect::<Vec<OrderDto>>())),
+        Ok(orders) => Ok(HttpResponse::Ok().json(
+            orders
+                .into_iter()
+                .map(OrderDto::from)
+                .collect::<Vec<OrderDto>>(),
+        )),
         Err(e) => {
             log::error!("Failed to fetch orders: {:?}", e);
             Err(actix_web::error::ErrorInternalServerError(
@@ -56,10 +61,10 @@ async fn update_order(
     payload: web::Json<PartialOrder>,
     db: web::Data<DatabaseConnection>,
 ) -> Result<HttpResponse, Error> {
-    match OrderService::update_order(db.get_ref(), order_id.into_inner(), payload.into_inner())
-        .await
-    {
-        Ok(Some(updated_order)) => Ok(HttpResponse::Ok().json(<entity::order::Model as Into<OrderDto>>::into(updated_order))),
+    match OrderService::update_order(db.get_ref(), order_id.into(), payload.into()).await {
+        Ok(Some(updated_order)) => Ok(HttpResponse::Ok().json(<entity::order::Model as Into<
+            OrderDto,
+        >>::into(updated_order))),
         Ok(None) => Ok(HttpResponse::NotFound().body("Order not found")),
         Err(e) => {
             log::error!("Failed to update order: {:?}", e);

@@ -84,8 +84,24 @@ jobs:
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/wallet-service:latest
 
-      # (Optional) Deploy the container
-      - name: Deploy application
-        if: github.ref == 'refs/heads/main'
+      - name: Configure AWS CLI
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
         run: |
-          echo "Deployment commands here (e.g., SSH to server, kubectl apply for Kubernetes)."
+          # Install AWS CLI
+          sudo apt-get update
+          sudo apt-get install -y awscli
+          # Configure AWS credentials
+          aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+          aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+          aws configure set region $AWS_REGION
+          # Authenticate with EKS
+          aws eks update-kubeconfig --name your-eks-cluster-name
+
+      # Apply Kubernetes manifests to the EKS cluster
+      - name: Deploy to EKS
+        run: |
+          kubectl apply -f k8s/deployment.yaml
+          kubectl apply -f k8s/service.yaml

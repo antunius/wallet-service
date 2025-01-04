@@ -1,13 +1,13 @@
-use crate::application::position_wallet_dto::PositionWalletDto as PositionWalletDto;
 use crate::repository::position_wallet_repository;
 use entity::position_wallet::Model;
 use log;
 use position_wallet_repository::PositionWalletRepository;
 use sea_orm::{DatabaseConnection, DbErr, DeleteResult};
 use uuid::Uuid;
-
 /// Service for managing PositionWallet
 pub struct PositionWalletService;
+
+use crate::application::position_wallet_dto::PositionWalletDto;
 
 impl PositionWalletService {
     /// Create a new position wallet entry

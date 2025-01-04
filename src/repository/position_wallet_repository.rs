@@ -9,7 +9,6 @@ use uuid::Uuid;
 pub struct PositionWalletRepository;
 
 impl PositionWalletRepository {
-
     /// Inserts a new position wallet entry.
     pub async fn insert_entry(
         db: &DatabaseConnection,
@@ -20,7 +19,6 @@ impl PositionWalletRepository {
         valor_total: Decimal,
         data_ultima_atualizacao: NaiveDateTime,
     ) -> Result<Model, DbErr> {
-
         let active_model = position_wallet::ActiveModel {
             id: Set(id),
             codigo_ativo: Set(codigo_ativo),
@@ -59,7 +57,7 @@ impl PositionWalletRepository {
     ) -> Result<Model, DbErr> {
         // Fetch the existing entry by its ID
         if let Some(existing_model) = position_wallet::Entity::read_one(db, id).await? {
-            let mut active_model: position_wallet::ActiveModel = existing_model.into_active_model();
+            let mut active_model = existing_model.into_active_model();
 
             // Update fields as per new input
             if let Some(codigo_ativo) = new_codigo_ativo {
@@ -75,8 +73,7 @@ impl PositionWalletRepository {
                 active_model.valor_total = Set(valor_total);
             }
             if let Some(_data_ultima_atualizacao) = new_data_ultima_atualizacao {
-                active_model.data_ultima_atualizacao =
-                    Set(new_data_ultima_atualizacao.unwrap());
+                active_model.data_ultima_atualizacao = Set(new_data_ultima_atualizacao.unwrap());
             }
 
             position_wallet::Entity::update_one(db, active_model).await

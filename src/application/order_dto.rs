@@ -32,7 +32,9 @@ impl From<OrderDto> for Model {
             r#type: dto.order_type.to_string(), // Converte o tipo de transação
             quantity: dto.quantity,
             price: dto.price,
-            date: dto.date.unwrap_or_else(|| chrono::Local::now().naive_local().date()), // Usa `Default` caso não tenha data
+            date: dto
+                .date
+                .unwrap_or_else(|| chrono::Local::now().naive_local().date()), // Usa `Default` caso não tenha data
         }
     }
 }
