@@ -1,12 +1,12 @@
+use crate::application::order_dto::PartialOrder;
 use crate::repository::crud::Crud;
 use entity::order;
 use entity::order::Model;
 use sea_orm::ActiveValue::Set;
 use sea_orm::{
-    prelude::*, ActiveModelTrait, DatabaseConnection, DeleteResult, EntityTrait, IntoActiveModel,
+    prelude::*, DatabaseConnection, DeleteResult, IntoActiveModel,
 };
 use std::option::Option;
-use crate::application::order_dto::PartialOrder;
 
 pub async fn insert_order(
     db: &DatabaseConnection,

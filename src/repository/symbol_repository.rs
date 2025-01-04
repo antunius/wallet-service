@@ -2,7 +2,7 @@ use crate::repository::crud::Crud;
 use crate::symbol::Symbol;
 use entity::symbol;
 use entity::symbol::Model;
-use sea_orm::{DatabaseConnection, DbErr, DeleteResult, EntityTrait, IntoActiveModel, Set};
+use sea_orm::{DatabaseConnection, DbErr, DeleteResult, IntoActiveModel, Set};
 
 pub struct SymbolRepository;
 

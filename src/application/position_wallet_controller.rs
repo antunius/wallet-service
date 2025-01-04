@@ -13,7 +13,7 @@ async fn create_wallet(
         Ok(created_wallet) => {
             Ok(HttpResponse::Created().json(Into::<PositionWalletDto>::into(created_wallet)))
         }
-        Err(err) => Ok(HttpResponse::InternalServerError().body({ "Error" })),
+        Err(_err) => Ok(HttpResponse::InternalServerError().body("Error")),
     }
 }
 
@@ -26,7 +26,7 @@ async fn get_all_wallets(db: web::Data<DatabaseConnection>) -> impl Responder {
                 .map(Into::into)
                 .collect::<Vec<PositionWalletDto>>(),
         ),
-        Err(err) => HttpResponse::InternalServerError().body({ "Error" }),
+        Err(_err) => HttpResponse::InternalServerError().body("Error"),
     }
 }
 

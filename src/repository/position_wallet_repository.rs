@@ -3,7 +3,7 @@ use entity::position_wallet;
 use entity::position_wallet::Model;
 use sea_orm::prelude::Decimal;
 use sea_orm::sqlx::types::chrono::NaiveDateTime;
-use sea_orm::{DatabaseConnection, DbErr, DeleteResult, EntityTrait, IntoActiveModel, Set};
+use sea_orm::{DatabaseConnection, DbErr, DeleteResult, IntoActiveModel, Set};
 use uuid::Uuid;
 
 pub struct PositionWalletRepository;
@@ -74,7 +74,7 @@ impl PositionWalletRepository {
             if let Some(valor_total) = new_valor_total {
                 active_model.valor_total = Set(valor_total);
             }
-            if let Some(data_ultima_atualizacao) = new_data_ultima_atualizacao {
+            if let Some(_data_ultima_atualizacao) = new_data_ultima_atualizacao {
                 active_model.data_ultima_atualizacao =
                     Set(new_data_ultima_atualizacao.unwrap());
             }

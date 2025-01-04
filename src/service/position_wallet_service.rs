@@ -4,7 +4,7 @@ use entity::position_wallet::Model;
 use log;
 use position_wallet_repository::PositionWalletRepository;
 use sea_orm::{DatabaseConnection, DbErr, DeleteResult};
-use uuid::{uuid, Uuid};
+use uuid::Uuid;
 
 /// Service for managing PositionWallet
 pub struct PositionWalletService;

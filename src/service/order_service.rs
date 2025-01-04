@@ -2,7 +2,7 @@ use crate::application::order_dto::{OrderDto, PartialOrder};
 use crate::repository::order_repository;
 use entity::order;
 use log;
-use sea_orm::{DatabaseConnection, DbErr, DeleteResult, UpdateResult};
+use sea_orm::{DatabaseConnection, DbErr, DeleteResult};
 
 pub struct OrderService;
 

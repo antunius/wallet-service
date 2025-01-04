@@ -1,8 +1,7 @@
-use crate::repository;
+use crate::repository::symbol_repository::SymbolRepository;
 use crate::symbol::Symbol;
 use entity::symbol::Model;
 use sea_orm::{DatabaseConnection, DbErr};
-use crate::repository::symbol_repository::SymbolRepository;
 
 // Generic CRUD operation for the 'symbol' entity.
 pub struct SymbolService;

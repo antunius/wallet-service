@@ -1,9 +1,7 @@
 use crate::application::order_dto::{OrderDto, PartialOrder};
-use crate::repository::order_repository;
 use crate::service;
 use actix_web::{delete, get, post, put, web, Error, HttpResponse};
-use entity::order;
-use sea_orm::{DatabaseConnection, DbErr};
+use sea_orm::DatabaseConnection;
 use service::order_service::OrderService;
 
 #[post("/order")]

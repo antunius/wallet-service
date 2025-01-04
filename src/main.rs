@@ -9,7 +9,6 @@ use actix_web::{web, App, HttpServer};
 use log::LevelFilter;
 use migration::{Migrator, MigratorTrait};
 use sea_orm::{ConnectOptions, Database};
-use serde::{Deserialize, Serialize};
 use std::time::Duration;
 
 #[actix_web::main]
