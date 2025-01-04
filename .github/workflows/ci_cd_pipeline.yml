@@ -98,7 +98,7 @@ jobs:
           aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
           aws configure set region $AWS_REGION
           # Authenticate with EKS
-          aws eks update-kubeconfig --name your-eks-cluster-name
+          aws eks update-kubeconfig --name marcus-cluster
 
       # Apply Kubernetes manifests to the EKS cluster
       - name: Deploy to EKS
