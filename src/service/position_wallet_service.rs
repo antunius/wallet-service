@@ -23,7 +23,7 @@ impl PositionWalletService {
             position_wallet_data.quantidade,
             position_wallet_data.preco_medio,
             position_wallet_data.valor_total,
-            position_wallet_data.data_ultima_atualizacao.into(),
+            position_wallet_data.data_ultima_atualizacao,
         )
         .await
     }
@@ -57,7 +57,7 @@ impl PositionWalletService {
             Option::from(updated_data.quantidade),
             Option::from(updated_data.preco_medio),
             Option::from(updated_data.valor_total),
-            Some(updated_data.data_ultima_atualizacao.into()),
+            Some(updated_data.data_ultima_atualizacao),
         )
         .await
     }

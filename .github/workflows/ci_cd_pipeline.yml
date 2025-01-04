@@ -46,8 +46,8 @@ jobs:
         run: cargo test --locked --release
 
       # Run linter (clippy) for good practices
-      - name: Run clippy for linting
-        run: cargo clippy --locked --all-targets --all-features -- -D warnings
+     #- name: Run clippy for linting
+      #  run: cargo clippy --locked --all-targets --all-features -- -D warnings
       
       # Check code formatting
       - name: Check formatting

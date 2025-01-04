@@ -18,7 +18,6 @@ pub async fn insert_order(
         quantity: Set(new_order.quantity),
         price: Set(new_order.price),
         date: Set(new_order.date),
-        ..Default::default()
     };
     order::Entity::create(db, active_model).await
 }
@@ -93,8 +92,7 @@ pub async fn delete_order_by_id(
     db: &DatabaseConnection,
     order_id: String,
 ) -> Result<DeleteResult, DbErr> {
-    <entity::order::Entity as Crud<entity::order::Entity, String>>::delete(db, order_id.into())
-        .await
+    <order::Entity as Crud<order::Entity, String>>::delete(db, order_id).await
 }
 
 impl Crud<'_, entity::order::Entity, String> for entity::order::Entity {}

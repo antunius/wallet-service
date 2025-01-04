@@ -12,8 +12,6 @@ pub struct TransactionCsv {
     transaction_type: String,
     #[serde(rename = "Mercado")]
     market: String,
-    #[serde(rename = "Instituição")]
-    institution: String,
     #[serde(rename = "Código de Negociação")]
     negotiation_code: String,
     #[serde(rename = "Quantidade")]

@@ -17,7 +17,6 @@ impl SymbolRepository {
             id: Set(new_symbol.id.clone()),
             name: Set(new_symbol.name.clone()),
             last_price: Set(default_price),
-            ..Default::default()
         };
 
         match symbol::Entity::read_one(db, new_symbol.id.parse().unwrap()).await {
